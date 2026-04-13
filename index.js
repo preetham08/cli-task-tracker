@@ -16,7 +16,6 @@ const tasks = data.tasks;
 
 // add
 if (command === "add") {
-
     if (!task_description) {
         console.log("Please provide a task description.");
         process.exit(1);
