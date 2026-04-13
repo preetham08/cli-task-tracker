@@ -41,8 +41,32 @@ if (command === "add") {
 // delete
 
 // mark-in-progress
+else if (command === "mark-in-progress" && sub_command) {
+    const taskId = parseInt(sub_command);
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) {
+        console.log(`Task with ID ${taskId} not found.`);
+        process.exit(1);
+    }
+    task.status = "in-progress";
+    task.updatedAt = new Date().toISOString();
+    fs.writeFileSync("task-list.json", JSON.stringify(data, null, 2), "utf-8");
+    console.log(`Task with ID ${taskId} marked as in-progress.`);
+}
 
 //mark-done
+else if (command === "mark-done" && sub_command) {
+    const taskId = parseInt(sub_command);
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) {
+        console.log(`Task with ID ${taskId} not found.`);
+        process.exit(1);
+    }
+    task.status = "done";
+    task.updatedAt = new Date().toISOString();
+    fs.writeFileSync("task-list.json", JSON.stringify(data, null, 2), "utf-8");
+    console.log(`Task with ID ${taskId} marked as done.`);
+}
 
 // list
 else if (command === "list" && !sub_command) {
