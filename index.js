@@ -2,7 +2,8 @@ const fs = require("fs");
 
 const args = process.argv.slice(2);
 const command = args[0];
-const sub_command = args[1]
+const sub_command = args[1];
+const sub_sub_command = args[2];
 if (!command) {
     console.log("Please provide a valid command.");
     process.exit(1);
@@ -37,8 +38,31 @@ if (command === "add") {
 }
 
 // update
+else if (command === "update" && sub_command && sub_sub_command) {
+    const taskId = parseInt(sub_command);
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) {
+        console.log(`Task with ID ${taskId} not found.`);
+        process.exit(1);
+    }
+    task.description = sub_sub_command;
+    task.updatedAt = new Date().toISOString();
+    fs.writeFileSync("task-list.json", JSON.stringify(data, null, 2), "utf-8");
+    console.log(`Task with ID ${taskId} updated successfully.`);
+}
 
 // delete
+else if (command === "delete" && sub_command) {
+    const taskId = parseInt(sub_command);
+    const taskIndex = tasks.findIndex(t => t.id === taskId);
+    if (taskIndex === -1) {
+        console.log(`Task with ID ${taskId} not found.`);
+        process.exit(1);
+    }
+    tasks.splice(taskIndex, 1);
+    fs.writeFileSync("task-list.json", JSON.stringify(data, null, 2), "utf-8");
+    console.log(`Task with ID ${taskId} deleted successfully.`);
+}
 
 // mark-in-progress
 else if (command === "mark-in-progress" && sub_command) {
