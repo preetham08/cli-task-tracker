@@ -1,6 +1,26 @@
 {
-  "lastId": 0,
+  "lastId": 3,
   "tasks": [
-    
+    {
+      "id": 1,
+      "description": "Yo All",
+      "status": "done",
+      "createdAt": "2026-04-13T12:01:35.362Z",
+      "updatedAt": "2026-04-13T12:01:35.375Z"
+    },
+    {
+      "id": 2,
+      "description": "Yo All Men",
+      "status": "todo",
+      "createdAt": "2026-04-13T12:01:40.447Z",
+      "updatedAt": "2026-04-13T12:01:40.451Z"
+    },
+    {
+      "id": 3,
+      "description": "Yo All Men and Women",
+      "status": "todo",
+      "createdAt": "2026-04-13T12:01:43.840Z",
+      "updatedAt": "2026-04-13T12:01:43.848Z"
+    }
   ]
 }

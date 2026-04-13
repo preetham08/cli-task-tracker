@@ -2,7 +2,8 @@ const fs = require("fs");
 
 const args = process.argv.slice(2);
 const command = args[0];
-if(!command) {
+const sub_command = args[1]
+if (!command) {
     console.log("Please provide a valid command.");
     process.exit(1);
 }
@@ -13,19 +14,19 @@ const data = JSON.parse(task_list);
 const tasks = data.tasks;
 
 // add
-if(command === "add") {
+if (command === "add") {
 
-    if(!task_description) {
+    if (!task_description) {
         console.log("Please provide a task description.");
         process.exit(1);
     }
 
     const newTask = {
-        id : data.lastId + 1,
-        description : task_description,
-        status : "todo",
-        createdAt : new Date().toISOString(),
-        updatedAt : new Date().toISOString()
+        id: data.lastId + 1,
+        description: task_description,
+        status: "todo",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
     }
     data.lastId = data.lastId + 1;
 
@@ -44,9 +45,8 @@ if(command === "add") {
 //mark-done
 
 // list
-else if(command === "list") {
-    // console.log("All Tasks:", tasks);
-    if(tasks.length === 0) {
+else if (command === "list" && !sub_command) {
+    if (tasks.length === 0) {
         console.log("No tasks found.");
     } else {
         console.log("All Tasks:");
@@ -56,10 +56,22 @@ else if(command === "list") {
     }
 }
 
-// list done
-
 // list todo
+else if (command === "list" && sub_command === "todo") {
+    const todoTasks = tasks.filter(task => task.status === "todo");
+    if (todoTasks.length === 0) {
+        console.log("No TODO tasks found.");
+    } else {
+        console.log("All TODO Tasks:");
+        todoTasks.forEach(task => {
+            console.log(`${task.id} || ${task.description} || ${task.status}`);
+        });
+    }
+}
 
 // list in-progress
+
+// list done
+
 
 // console.log("Arguments passed: ", args);
