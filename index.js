@@ -44,6 +44,17 @@ if(command === "add") {
 //mark-done
 
 // list
+else if(command === "list") {
+    // console.log("All Tasks:", tasks);
+    if(tasks.length === 0) {
+        console.log("No tasks found.");
+    } else {
+        console.log("All Tasks:");
+        tasks.forEach(task => {
+            console.log(`${task.id} || ${task.description} || ${task.status}`);
+        });
+    }
+}
 
 // list done
 
