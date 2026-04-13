@@ -70,18 +70,29 @@ else if (command === "list" && sub_command === "todo") {
 }
 
 // list in-progress
-const inprogressTasks = tasks.filter(task => task.status === "in-progress");
-if (inprogressTasks.length === 0) {
-    console.log("No In-Progress tasks found.");
-} else {
-    console.log("All In-Progress Tasks:");
-    inprogressTasks.forEach(task => {
-        console.log(`${task.id} || ${task.description} || ${task.status}`);
-    });
+else if (command === "list" && sub_command === "in-progress") {
+    const inprogressTasks = tasks.filter(task => task.status === "in-progress");
+    if (inprogressTasks.length === 0) {
+        console.log("No In-Progress tasks found.");
+    } else {
+        console.log("All In-Progress Tasks:");
+        inprogressTasks.forEach(task => {
+            console.log(`${task.id} || ${task.description} || ${task.status}`);
+        });
+    }
 }
 
-
 // list done
-
+else if (command === "list" && sub_command === "done") {
+    const doneTasks = tasks.filter(task => task.status === "done");
+    if (doneTasks.length === 0) {
+        console.log("No Done tasks found.");
+    } else {
+        console.log("All Done Tasks:");
+        doneTasks.forEach(task => {
+            console.log(`${task.id} || ${task.description} || ${task.status}`);
+        });
+    }
+}
 
 // console.log("Arguments passed: ", args);
